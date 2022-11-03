@@ -16,7 +16,7 @@ const Title = styled.Text`
 const Button = styled.TouchableOpacity`
     width: 40%;
     paddingVertical: 25px;
-    background-color: rgb(255,165,0);
+    background-color: #05668d;
     margin-top: 35px;
     margin-bottom: 30px;
     borderRadius: 25px;
