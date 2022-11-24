@@ -5,30 +5,32 @@ import CardStudents from '../../components/cardStudent';
 import firebase from '../../config/firebaseConnection';
 import db from '../../config/firebaseConnection'
 
-import { ref, get, getDatabase } from 'firebase/database';
+import { ref, get, getDatabase, onChildAdded } from 'firebase/database';
 import { useEffect, useState } from 'react';
 
 export default function Students() {
 
     const [alunos, setAlunos] = useState([]);
 
+    async function buscarAlunos() {
+        const database = getDatabase();
+        var referenceProgram = ref(database, "Alunos");
+        console.log(referenceProgram)
+        onChildAdded(referenceProgram, (snapshot) => {
+            var data = {
+                key: snapshot.key,
+                nome: snapshot.val().nome,
+                idade: snapshot.val().idade,
+                nota1: snapshot.val().nota1,
+                nota2: snapshot.val().nota2,
+                nota3: snapshot.val().nota3,
+                imagem: snapshot.val().link
+            }
+            setAlunos(alunos => [...alunos, data]);
+        })
+    };
+
     useEffect(() => {
-        async function buscarAlunos() {
-            const database = getDatabase();
-            const snapshot = await get(ref(database, 'Alunos/'));
-            snapshot.forEach((childItem) => {
-                var data = {
-                    key: childItem.key,
-                    nome: childItem.val().nome,
-                    idade: childItem.val().idade,
-                    nota1: childItem.val().nota1,
-                    nota2: childItem.val().nota2,
-                    nota3: childItem.val().nota3,
-                    imagem: childItem.val().link
-                }
-                setAlunos(alunos => [...alunos, data]);
-            })
-        }
         buscarAlunos();
     }, [])
 
