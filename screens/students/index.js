@@ -8,7 +8,7 @@ import db from '../../config/firebaseConnection'
 import { ref, get, getDatabase, onChildAdded } from 'firebase/database';
 import { useEffect, useState } from 'react';
 
-export default function Students() {
+export default function Students({navigation}) {
 
     const [alunos, setAlunos] = useState([]);
 
@@ -41,7 +41,7 @@ export default function Students() {
 
             <ScrollView>
 
-                <View style={{ alignItems: "center", flexDirection: "row", justifyContent: "center", flex: 1, justifyContent: "center" }}>
+                <View style={{flex: 1}}>
                     <FlatList
                         showsVerticalScrollIndicator={false}
                         data={alunos}
@@ -55,6 +55,7 @@ export default function Students() {
                                     nota2={item.nota2}
                                     nota3={item.nota3}
                                     imgPerfil={item.imagem}
+                                    navigation={navigation}
                                 />
                             )
                         }}
@@ -69,9 +70,9 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
-        alignItems: 'center'
     },
     titulo: {
+        textAlign: 'center',
         fontWeight: 'bold',
         fontSize: 30,
         padding: 10

@@ -7,17 +7,17 @@ export default function CardStudents({
     nota1,
     nota2,
     nota3,
-    imgPerfil
-}) {
+    imgPerfil,
+    navigation }) {
 
     return (
-        <TouchableOpacity style={styles.card}>
-            <Image style={{ width: 200, height: 250 }} source={{ uri: imgPerfil }}></Image>
-            <Text>Nome: {nome}</Text>
-            <Text>Idade: {idade}</Text>
-            <Text>1° Nota: {nota1}</Text>
-            <Text>2° Nota: {nota2}</Text>
-            <Text>3° Nota: {nota3}</Text>
+        <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('Details', {nome: nome, idade: idade, nota1: nota1, nota2: nota2, nota3: nota3, link: imgPerfil})}>
+            <Image style={{ width: '100%', height: 250 }} source={{ uri: imgPerfil }}></Image>
+            <Text style={styles.text}>Nome: {nome}</Text>
+            <Text style={styles.text}>Idade: {idade}</Text>
+            <Text style={styles.text}>1° Nota: {nota1}</Text>
+            <Text style={styles.text}>2° Nota: {nota2}</Text>
+            <Text style={styles.text}>3° Nota: {nota3}</Text>
         </TouchableOpacity>
     );
 }
@@ -25,86 +25,15 @@ export default function CardStudents({
 const styles = StyleSheet.create({
     card: {
         backgroundColor: "#e8eaea",
+        width: '90%',
         borderRadius: 8,
         padding: 15,
-        justifyContent: "space-between",
         marginVertical: 10,
-    },
-    dataPost: {
-        fontSize: 13,
-        fontWeight: "300",
-        textAlign: "right",
-        marginVertical: 2,
-    },
-    userDatail: {
-        width: "100%",
-        flexDirection: "row",
-        alignItems: "center",
-    },
-    userText: {
-        marginLeft: 10,
-        justifyContent: "center",
-    },
-    name: {
-        textTransform: "uppercase",
-        color: "#0e52b2",
-        fontSize: 16,
-        fontWeight: "800",
-    },
-    cidade: {
-        textTransform: "capitalize",
-        color: "#0e52b2",
-        fontSize: 16,
-        fontWeight: "700",
-    },
-    titulo: {
-        fontSize: 18,
-        fontWeight: "700",
-        textTransform: "uppercase",
-        marginVertical: 5,
-    },
-    description: {
-        width: "100%",
-        marginBottom: 10,
-    },
-    fotoPerfil: {
-        width: 50,
-        height: 50,
-        borderRadius: 60,
-        borderWidth: 2,
-        borderColor: "#0e52B2",
-    },
-    ViewBtn: {
-        width: "100%",
-        alignItems: "center",
-    },
-    button: {
-        width: "70%",
-        backgroundColor: "#38B6FF",
-        borderRadius: 25,
-        padding: 15,
-        alignItems: "center",
+        alignSelf: 'center',
     },
     text: {
-        fontSize: 18,
-        color: "#fff",
-        fontWeight: "bold",
-        letterSpacing: 1,
-    },
-    status: {
-        color: "#38B6FF",
-        fontWeight: "bold",
-        fontSize: 18,
-        textDecorationLine: "underline",
-        textTransform: "uppercase",
-        marginBottom: 5,
-    },
-    boxImages: {
-        padding: 5,
-    },
-    img: {
-        width: 70,
-        height: 70,
-        margin: 10,
-    },
+        fontSize: 15,
+        marginVertical: 5
+    }
+
 });
